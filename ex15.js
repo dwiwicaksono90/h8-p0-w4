@@ -44,12 +44,12 @@ function removeSpaces (str) {
 }
 
 function passwordGenerator (name) {
-  var listChangeVoc = changeVocals (str)
+  var listChangeVoc = changeVocals (name)
   var listReverse = reverseWord (listChangeVoc)
   var listSetLowUp = setLowerUpperCase (listReverse)
   var listRemoveSpace = removeSpaces (listSetLowUp)
-  var listPassGen = passwordGenerator (listRemoveSpace)
-  return listPassGen
+  // var listPassGen = passwordGenerator (listRemoveSpace)
+  return listRemoveSpace
 }
 
 // console.log(changeVocals('Sergei Dragunov')); // 'VPNVGBRdJFGRFs'
