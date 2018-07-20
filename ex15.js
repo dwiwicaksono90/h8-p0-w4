@@ -1,21 +1,42 @@
 function changeVocals (str) {
   var alfa = 'abcdefghijklmnopqrstuvwxyz'
-  var vokal = 'aiueo'
   var result = ''
   for (var i = 0; i < str.length; i++){
-    var temp = str[i]
-    for (var j = 0; j < vokal.length; j++){
-      if (str[i] === vokal[j]){
-        temp = alfa[alfa.indexOf(str[i])+1]
-        // console.log(temp)
-      } else if (str[i] === vokal[j].toUpperCase()){
-        temp = alfa[alfa.indexOf(str[i].toLowerCase())+1].toUpperCase()
-      }
+    switch (str[i]){
+      case 'a' : {result = result + alfa[1];break;}
+      case 'A' : {result = result + alfa[1].toUpperCase();break;}
+      case 'i' : {result = result + alfa[9];break;}
+      case 'I' : {result = result + alfa[9].toUpperCase();break;}
+      case 'u' : {result = result + alfa[21];break;}
+      case 'U' : {result = result + alfa[21].toUpperCase();break;}
+      case 'e' : {result = result + alfa[5];break;}
+      case 'E' : {result = result + alfa[5].toUpperCase();break;}
+      case 'o' : {result = result + alfa[15];break;}
+      case 'O' : {result = result + alfa[15].toUpperCase();break;}
+      default : {result = result + str[i];}
     }
-    result = result + temp
   }
-  return result
+return result
 }
+
+
+  // var alfa = 'abcdefghijklmnopqrstuvwxyz'
+  // var vokal = 'aiueo'
+  // var result = ''
+  // for (var i = 0; i < str.length; i++){
+  //   var temp = str[i]
+  //   for (var j = 0; j < vokal.length; j++){
+  //     if (str[i] === vokal[j]){
+  //       temp = alfa[alfa.indexOf(str[i])+1]
+  //       // console.log(temp)
+  //     } else if (str[i] === vokal[j].toUpperCase()){
+  //       temp = alfa[alfa.indexOf(str[i].toLowerCase())+1].toUpperCase()
+  //     }
+  //   }
+  //   result = result + temp
+  // }
+  // return result
+// }
 
 function reverseWord (str) {
   return str.split('').reverse().join('')
@@ -44,15 +65,17 @@ function removeSpaces (str) {
 }
 
 function passwordGenerator (name) {
+  if (name.length < 5){
+    return 'Minimal karakter yang diinputkan adalah 5 karakter'
+  } else {
   var listChangeVoc = changeVocals (name)
   var listReverse = reverseWord (listChangeVoc)
   var listSetLowUp = setLowerUpperCase (listReverse)
   var listRemoveSpace = removeSpaces (listSetLowUp)
-  // var listPassGen = passwordGenerator (listRemoveSpace)
   return listRemoveSpace
+  }
 }
-
-// console.log(changeVocals('Sergei Dragunov')); // 'VPNVGBRdJFGRFs'
+console.log(passwordGenerator('Sergei Dragunov')); // 'VPNVGBRdJFGRFs'
 console.log(passwordGenerator('Dimitri Wahyudiputra')); // 'BRTVPJDVYHBwJRTJMJd'
 console.log(passwordGenerator('Alexei')); // 'JFXFLb'
-// console.log(passwordGenerator('Alex')); // 'Minimal karakter yang diinputkan adalah 5 karakter'
+console.log(passwordGenerator('Alex')); // 'Minimal karakter yang diinputkan adalah 5 karakter'
